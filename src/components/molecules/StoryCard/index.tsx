@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { TextureBlock } from '@/components/atoms/TextureBlock';
 import type { Story } from '@/data/content';
 
@@ -7,12 +8,12 @@ interface StoryCardProps {
 
 export function StoryCard({ story }: StoryCardProps) {
   return (
-    <a href={story.href} className="group flex flex-col gap-5 text-ink">
+    <Link to={`/stories/${story.slug}`} className="group flex flex-col gap-5 text-ink">
       <div className="overflow-hidden">
         <TextureBlock
           label={story.imgLabel}
           aspect="4/5"
-          texture="b"
+          texture={story.texture}
           className="transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
         />
       </div>
@@ -21,6 +22,6 @@ export function StoryCard({ story }: StoryCardProps) {
         <h3 className="font-serif font-medium text-h3 text-ink m-0 mb-2.5">{story.title}</h3>
         <span className="text-nav tracking-tightish border-b border-ink pb-0.5">VIEW STORY</span>
       </div>
-    </a>
+    </Link>
   );
 }

@@ -46,6 +46,9 @@ export default {
         'h2-lg': ['clamp(32px,4vw,52px)', { lineHeight: '1.15' }],
         'h2-md': ['clamp(30px,4vw,48px)', { lineHeight: '1.2' }],
         'h2-sm': ['clamp(30px,4vw,44px)', { lineHeight: '1.15' }],
+        'h1-about': ['clamp(36px,4.5vw,58px)', { lineHeight: '1.15' }],
+        'h1-approach': ['clamp(32px,4.5vw,54px)', { lineHeight: '1.2' }],
+        'h1-story': ['clamp(38px,6vw,66px)', { lineHeight: '1.1' }],
       },
       letterSpacing: {
         tightish: '1px',

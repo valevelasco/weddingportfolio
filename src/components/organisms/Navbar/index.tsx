@@ -57,7 +57,7 @@ export function Navbar() {
         </button>
       </header>
 
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} links={navLinks} />
     </>
   );
 }

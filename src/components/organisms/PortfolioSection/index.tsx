@@ -5,6 +5,8 @@ import { TextLink } from '@/components/atoms/TextLink';
 import { StoryCard } from '@/components/molecules/StoryCard';
 import { stories } from '@/data/content';
 
+const teaserStories = stories.slice(0, 2);
+
 export function PortfolioSection() {
   return (
     <section id="portfolio" className="px-[6vw] pb-section">
@@ -14,15 +16,15 @@ export function PortfolioSection() {
       </Reveal>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10">
-        {stories.map((story, i) => (
-          <Reveal key={story.title} delayMs={i * 120}>
+        {teaserStories.map((story, i) => (
+          <Reveal key={story.slug} delayMs={i * 120}>
             <StoryCard story={story} />
           </Reveal>
         ))}
       </div>
 
       <div className="text-center mt-16">
-        <TextLink href="/stories" className="mx-auto">
+        <TextLink to="/stories" className="mx-auto">
           VIEW ALL STORIES
         </TextLink>
       </div>

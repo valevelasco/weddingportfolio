@@ -26,7 +26,7 @@ export function AboutSection() {
           Switzerland and around the world, creating photographs that feel authentic, elegant and
           timeless.
         </p>
-        <TextLink href="/about">MORE ABOUT ME</TextLink>
+        <TextLink to="/about">MORE ABOUT ME</TextLink>
       </Reveal>
     </section>
   );

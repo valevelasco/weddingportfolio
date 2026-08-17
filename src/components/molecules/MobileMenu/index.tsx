@@ -1,12 +1,18 @@
 import { X } from 'lucide-react';
-import { navLinks } from '@/data/navigation';
+
+interface MobileMenuLink {
+  label: string;
+  href: string;
+}
 
 interface MobileMenuProps {
   open: boolean;
   onClose: () => void;
+  links: MobileMenuLink[];
+  inquireHref?: string;
 }
 
-export function MobileMenu({ open, onClose }: MobileMenuProps) {
+export function MobileMenu({ open, onClose, links, inquireHref = '#contact' }: MobileMenuProps) {
   if (!open) return null;
 
   return (
@@ -18,7 +24,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       >
         <X size={28} strokeWidth={1.5} />
       </button>
-      {navLinks.map((link) => (
+      {links.map((link) => (
         <a
           key={link.href}
           onClick={onClose}
@@ -28,11 +34,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           {link.label}
         </a>
       ))}
-      <a
-        onClick={onClose}
-        href="#contact"
-        className="mt-4 text-cta bg-ink text-cream px-8 py-3.5"
-      >
+      <a onClick={onClose} href={inquireHref} className="mt-4 text-cta bg-ink text-cream px-8 py-3.5">
         INQUIRE
       </a>
     </div>

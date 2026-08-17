@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
+import { Link, type LinkProps } from 'react-router-dom';
 
 type CommonProps = {
   children: ReactNode;
@@ -16,9 +17,16 @@ type NativeButtonProps = CommonProps &
     as: 'button';
   };
 
-export type ButtonProps = AnchorButtonProps | NativeButtonProps;
+/** Internal SPA navigation via react-router's Link. */
+type RouterButtonProps = CommonProps &
+  LinkProps & {
+    as: 'link';
+  };
 
-const base = 'inline-flex items-center justify-center text-cta px-[30px] py-[15px] transition-all duration-300';
+export type ButtonProps = AnchorButtonProps | NativeButtonProps | RouterButtonProps;
+
+const base =
+  'inline-flex items-center justify-center text-cta px-[30px] py-[15px] transition-all duration-300';
 
 const variants: Record<NonNullable<CommonProps['variant']>, string> = {
   'solid-dark': 'bg-ink text-cream hover:bg-ink-soft',
@@ -36,6 +44,15 @@ export function Button({ children, variant = 'solid-dark', className = '', ...re
       <button className={classes} {...buttonRest}>
         {children}
       </button>
+    );
+  }
+
+  if (rest.as === 'link') {
+    const { as: _as, ...linkRest } = rest;
+    return (
+      <Link className={classes} {...linkRest}>
+        {children}
+      </Link>
     );
   }
 
