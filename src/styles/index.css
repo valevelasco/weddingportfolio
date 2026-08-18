@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply m-0 bg-cream text-ink font-sans;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #292725;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: #d8d1c7;
+  }
+
+  a {
+    @apply text-ink no-underline transition-colors duration-300;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .texture-a {
+    background-image: repeating-linear-gradient(
+      135deg,
+      theme('colors.texture.a'),
+      theme('colors.texture.a') 18px,
+      theme('colors.texture.b') 18px,
+      theme('colors.texture.b') 36px
+    );
+  }
+
+  .texture-b {
+    background-image: repeating-linear-gradient(
+      135deg,
+      theme('colors.texture.b'),
+      theme('colors.texture.b') 14px,
+      theme('colors.texture.c') 14px,
+      theme('colors.texture.c') 28px
+    );
+  }
+
+  .texture-a-fine {
+    background-image: repeating-linear-gradient(
+      135deg,
+      theme('colors.texture.a'),
+      theme('colors.texture.a') 14px,
+      theme('colors.texture.b') 14px,
+      theme('colors.texture.b') 28px
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
