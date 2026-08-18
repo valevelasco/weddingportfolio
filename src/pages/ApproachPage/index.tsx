@@ -5,12 +5,14 @@ import { ApproachPrinciples } from '@/components/organisms/ApproachPrinciples';
 import { ClosingCTA } from '@/components/organisms/ClosingCTA';
 import { SimpleFooter } from '@/components/organisms/SimpleFooter';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export function ApproachPage() {
+  const { t } = useLanguage();
+
   useDocumentMeta({
-    title: 'My Approach | Valeria Velasco Photography',
-    description:
-      "How Valeria Velasco approaches wedding photography — documentary-first, unposed, and attentive to feeling.",
+    title: t.approachPage.seoTitle,
+    description: t.approachPage.seoDescription,
   });
 
   return (

@@ -1,7 +1,7 @@
 import { Reveal } from '@/components/atoms/Reveal';
 import { Eyebrow } from '@/components/atoms/Eyebrow';
 import { SectionTitle } from '@/components/atoms/SectionTitle';
-import type { StoryDetail } from '@/data/content';
+import type { StoryDetail } from '@/i18n/types';
 
 interface StoryIntroProps {
   detail: StoryDetail;

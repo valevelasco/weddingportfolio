@@ -1,11 +1,13 @@
 import { LandingTemplate } from '@/components/templates/LandingTemplate';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export function HomePage() {
+  const { t } = useLanguage();
+
   useDocumentMeta({
-    title: 'Valeria Velasco Photography | Wedding Photographer in Switzerland',
-    description:
-      'Elegant and timeless wedding photography in Switzerland and across Europe. Capturing authentic moments, intimate details and beautiful celebrations.',
+    title: t.home.seoTitle,
+    description: t.home.seoDescription,
   });
 
   return <LandingTemplate />;

@@ -3,7 +3,8 @@
 Wedding photography site, implemented from the Claude Design export
 (`Homepage.dc.html`, `About.dc.html`, `Approach.dc.html`, `Stories.dc.html`,
 `Story.dc.html`) as a Vite + React 18 + TypeScript app with Tailwind CSS,
-built with Atomic Design and client-side routing (react-router-dom).
+built with Atomic Design, client-side routing (react-router-dom), and a
+custom EN/FR/DE i18n layer.
 
 ## Commands
 
@@ -35,6 +36,44 @@ needs to rewrite unknown paths to `index.html` (otherwise a direct load of
 `/about` 404s). `public/_redirects` covers Netlify; Vercel/Cloudflare Pages/etc.
 need an equivalent rewrite rule configured on the host.
 
+## Internationalization (EN / FR / DE)
+
+The language switcher in the header (homepage `Navbar` and the subpages'
+`PageHeader`) is fully functional — it drives a `LanguageProvider`
+(`src/i18n/LanguageContext.tsx`) that holds the active language in React
+context, persists it to `localStorage` (`vvp-language`), and keeps
+`<html lang>` in sync.
+
+- `src/i18n/types.ts` — the `Dictionary` interface: every piece of copy on
+  the site (nav labels, section text, form labels/errors, the three stories,
+  the one full story narrative, approach principles, per-page SEO
+  title/description) as a typed shape.
+- `src/i18n/dictionaries/{en,fr,de}.ts` — one full implementation of
+  `Dictionary` per language. These are self-contained (structural fields
+  like `slug`/`texture`/`aspect` are duplicated across languages rather than
+  cross-referenced) so each file is simple to read and edit independently.
+- Components call `const { t } = useLanguage()` and read straight off `t`
+  (e.g. `t.hero.titleLine1`, `t.stories`, `t.storyDetails['anna-elias']`) —
+  no key lookups or fallback strings scattered through JSX.
+- `src/data/navigation.ts` holds only the **structural**, language-independent
+  nav data (hrefs/routes, keyed by a stable `id`); the visible label always
+  comes from `t.nav[id]`.
+- `useDocumentMeta` re-runs whenever the derived title/description changes,
+  so the tab title and meta description update immediately on language
+  switch, and per-route (title changes even though the URL doesn't).
+
+**Adding a fourth language**: add the code to `Language` in
+`src/i18n/types.ts`, create `src/i18n/dictionaries/xx.ts` implementing
+`Dictionary` (copy `en.ts` as a starting point — TypeScript will flag any
+missing field), register it in the `dictionaries` map in
+`LanguageContext.tsx`, and add the code to `languageCodes` in
+`src/data/navigation.ts`.
+
+**Known limitation**: only the `anna-elias` story has full narrative content
+in any language (see "Story detail content" below) — that's a property of
+the source design, not of the translation layer, and applies identically in
+all three languages.
+
 ## Folder structure
 
 ```
@@ -44,6 +83,11 @@ public/
   image-2.jpg           # placeholder — secondary photo
   robots.txt, sitemap.xml, _redirects
 src/
+  i18n/
+    types.ts              Language type + Dictionary interface
+    LanguageContext.tsx    LanguageProvider + useLanguage() hook
+    dictionaries/
+      en.ts, fr.ts, de.ts  one full Dictionary implementation per language
   components/
     atoms/              Button, Logo, Eyebrow, SectionTitle, TextLink,
                          TextureBlock, Reveal, ScrollToHash
@@ -72,10 +116,8 @@ src/
     useInViewReveal.ts     IntersectionObserver fade-up trigger
     useDocumentMeta.ts     sets document.title + meta description per route
   data/
-    navigation.ts          navLinks (homepage in-page anchors), siteNavLinks
-                           (cross-page routes for subpages), languages, socials
-    content.ts              stories, storyDetails, experience phases,
-                           testimonials, approach principles
+    navigation.ts          structural-only nav data (hrefs/routes by id);
+                           labels come from the active Dictionary
   styles/
     index.css              Tailwind layers, global resets, texture utilities
   App.tsx, main.tsx, vite-env.d.ts
@@ -100,13 +142,13 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
 - The JSON-LD in `index.html` is typed for this business (a Switzerland-based
   wedding photographer) rather than the generic "reformas en Madrid"
   LocalBusiness boilerplate — update the `url`, `email` and `address` fields
-  once a real domain is available. It only covers the homepage document,
-  since this is a CSR-only SPA (no SSR/prerendering) — per-route OG/JSON-LD
-  for `/about` etc. would need a prerender step, which is out of scope for
-  the current stack.
-- `html lang="en"` (not `es`) because all page copy in the design is in
-  English — the `lang` attribute must match actual content for AA
-  accessibility/SEO.
+  once a real domain is available. It's static English and only covers the
+  homepage document, since this is a CSR-only SPA (no SSR/prerendering) —
+  true per-route, per-language OG/JSON-LD would need a prerender step, out
+  of scope for the current stack.
+- `<html lang>` is set dynamically by `LanguageProvider` to match whichever
+  language is active (defaults to `en`), rather than a static value in
+  `index.html` — necessary now that content is genuinely multilingual.
 - The contact form's grid is `1fr` on mobile and `1fr 1fr` from the `sm`
   breakpoint up. The source design fixed it at two columns unconditionally,
   which breaks unusably on narrow phones — this is an intentional deviation
@@ -116,14 +158,18 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
   whole site (homepage teaser, the full Stories collection) points to that
   same file; there's no per-story detail content for Sofia & Marco or
   Léa & Julian in the export. `StoryPage` is built to be properly
-  data-driven per slug (`storyDetails` in `src/data/content.ts`), but only
-  `anna-elias` has content — any other slug falls back to it, which
+  data-driven per slug (`t.storyDetails` in each language dictionary), but
+  only `anna-elias` has content — any other slug falls back to it, which
   reproduces the source design's actual behavior exactly while leaving the
   route structure ready for when the other two stories are written.
 - Subpages use their own `PageHeader` (static, not fixed/scroll-aware) and
   `SimpleFooter` (copyright line only), matching the source design's simpler
   chrome on About/Approach/Stories/Story versus the homepage's animated,
-  fixed `Navbar` and full `Footer`.
+  fixed `Navbar` and full `Footer`. `PageHeader` also carries the language
+  switcher (the source design only put it on the homepage; without it there
+  a visitor who leaves `/` would have no way to change language, so it's
+  reused there in the same style rather than treated as a homepage-only
+  feature).
 - A few of the source design's inline `@media (min-width: 760px)` /
   `860px` / `620px` breakpoints (About/Approach/Stories/Story grids) don't
   match the homepage's single 1080px nav breakpoint — rather than force them
@@ -135,8 +181,9 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
 
 - Replace `image-1.jpg`, `image-2.jpg`, add `transition.mp4`, and swap the
   remaining `TextureBlock`/`TextureBanner` placeholders for real photography.
-- Write real detail content for the Sofia & Marco and Léa & Julian stories
-  (add entries to `storyDetails` in `src/data/content.ts`).
+- Write real detail content for the Sofia & Marco and Léa & Julian stories,
+  in all three languages (add entries to `storyDetails` in each of
+  `src/i18n/dictionaries/{en,fr,de}.ts`).
 - Update the canonical domain in `index.html` (`og:url`, `twitter:image`,
   JSON-LD) and in `public/robots.txt` / `public/sitemap.xml`.
 - Configure your static host's SPA rewrite (see Routes above).

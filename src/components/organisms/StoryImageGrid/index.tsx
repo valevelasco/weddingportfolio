@@ -1,5 +1,5 @@
 import { TextureBlock } from '@/components/atoms/TextureBlock';
-import type { StoryPlaceholder } from '@/data/content';
+import type { StoryPlaceholder } from '@/i18n/types';
 
 interface StoryImageGridProps {
   items: StoryPlaceholder[];

@@ -8,17 +8,17 @@ import { Reveal } from '@/components/atoms/Reveal';
 import { Button } from '@/components/atoms/Button';
 import { SimpleFooter } from '@/components/organisms/SimpleFooter';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
-import { storyDetails } from '@/data/content';
-
-const fallbackDetail = storyDetails['anna-elias'];
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export function StoryPage() {
   const { slug } = useParams<{ slug: string }>();
-  const detail = (slug && storyDetails[slug]) || fallbackDetail;
+  const { t } = useLanguage();
+  const fallbackDetail = t.storyDetails['anna-elias'];
+  const detail = (slug && t.storyDetails[slug]) || fallbackDetail;
 
   useDocumentMeta({
-    title: `${detail.title} — ${detail.location} | Valeria Velasco Photography`,
-    description: `A wedding story from ${detail.location} — captured by Valeria Velasco Photography.`,
+    title: t.storyPage.seoTitleTemplate(detail.title, detail.location),
+    description: t.storyPage.seoDescriptionTemplate(detail.location),
   });
 
   return (
@@ -47,7 +47,7 @@ export function StoryPage() {
 
         <Reveal className="py-[min(10vw,110px)] px-[6vw] text-center">
           <Button as="link" to="/stories" variant="outline-dark">
-            BACK TO ALL STORIES
+            {t.storyPage.backToAllStories}
           </Button>
         </Reveal>
       </main>

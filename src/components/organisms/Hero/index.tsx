@@ -1,8 +1,10 @@
 import { Button } from '@/components/atoms/Button';
 import { usePingPongVideo } from '@/hooks/usePingPongVideo';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export function Hero() {
   const { videoRef, hasError, reducedMotion } = usePingPongVideo();
+  const { t } = useLanguage();
   const showVideo = !hasError && !reducedMotion;
 
   return (
@@ -43,22 +45,22 @@ export function Hero() {
       />
 
       <div className="absolute top-24 left-[22px] z-[1] text-label text-ink bg-cream/75 px-3 py-1.5">
-        HERO PHOTOGRAPH &mdash; FULL BLEED, HORIZONTAL, EDITORIAL COUPLE MOMENT
+        {t.hero.placeholderLabel}
       </div>
 
       <div className="relative z-[2] w-full px-[6vw] pb-[8vw] flex flex-col gap-6 text-cream">
-        <p className="text-sm tracking-eyebrow m-0">WEDDING PHOTOGRAPHER BASED IN SWITZERLAND</p>
+        <p className="text-sm tracking-eyebrow m-0">{t.hero.eyebrow}</p>
         <h1 className="font-serif font-medium text-hero m-0 max-w-hero">
-          Timeless photographs
+          {t.hero.titleLine1}
           <br />
-          for modern love stories.
+          {t.hero.titleLine2}
         </h1>
         <div className="flex gap-[18px] flex-wrap mt-3">
           <Button as="a" href="#portfolio" variant="solid-light">
-            VIEW PORTFOLIO
+            {t.hero.viewPortfolio}
           </Button>
           <Button as="a" href="#contact" variant="outline-light">
-            GET IN TOUCH
+            {t.hero.getInTouch}
           </Button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import type { ExperiencePhase } from '@/data/content';
+import type { ExperiencePhase } from '@/i18n/types';
 
 interface ExperiencePhaseCardProps {
   phase: ExperiencePhase;

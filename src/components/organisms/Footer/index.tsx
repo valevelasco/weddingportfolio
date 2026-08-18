@@ -1,7 +1,16 @@
-import { navLinks, socials } from '@/data/navigation';
+import { navHrefs, socialHrefs } from '@/data/navigation';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export function Footer() {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
+
+  const navLinks = navHrefs.map(({ id, href }) => ({ label: t.nav[id], href }));
+  const socials = [
+    { label: t.footer.instagram, href: socialHrefs[0].href },
+    { label: t.footer.pinterest, href: socialHrefs[1].href },
+    { label: 'EMAIL', href: socialHrefs[2].href },
+  ];
 
   return (
     <footer className="pt-16 px-[6vw] pb-10 border-t border-border flex flex-col gap-10 bg-cream">
@@ -29,7 +38,7 @@ export function Footer() {
       </div>
 
       <p className="text-nav text-muted m-0 border-t border-border pt-6">
-        &copy; {year} Valeria Velasco Photography. All rights reserved.
+        &copy; {year} Valeria Velasco Photography. {t.footer.rights}
       </p>
     </footer>
   );

@@ -3,6 +3,7 @@ import { Reveal } from '@/components/atoms/Reveal';
 import { SectionTitle } from '@/components/atoms/SectionTitle';
 import { Button } from '@/components/atoms/Button';
 import { FormField } from '@/components/molecules/FormField';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 interface Fields {
   firstName: string;
@@ -29,6 +30,8 @@ const initialFields: Fields = {
 type Errors = Partial<Record<keyof Fields, boolean>>;
 
 export function ContactSection() {
+  const { t } = useLanguage();
+  const { contact } = t.home;
   const [fields, setFields] = useState<Fields>(initialFields);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
@@ -58,9 +61,9 @@ export function ContactSection() {
     <section id="contact" className="py-section px-[6vw]">
       <Reveal className="text-center max-w-[560px] mx-auto mb-14">
         <SectionTitle size="h2-xl" className="mb-4">
-          Let&apos;s Connect
+          {contact.title}
         </SectionTitle>
-        <p className="text-body-base text-muted m-0">I&apos;d love to hear about your wedding.</p>
+        <p className="text-body-base text-muted m-0">{contact.subtitle}</p>
       </Reveal>
 
       {submitted ? (
@@ -68,9 +71,7 @@ export function ContactSection() {
           role="status"
           className="max-w-[640px] mx-auto text-center py-12 px-6 border border-border bg-section"
         >
-          <p className="font-serif text-2xl text-ink m-0">
-            Thank you for reaching out. I&apos;ll be in touch soon.
-          </p>
+          <p className="font-serif text-2xl text-ink m-0">{contact.thankYou}</p>
         </div>
       ) : (
         <Reveal delayMs={100}>
@@ -82,16 +83,16 @@ export function ContactSection() {
             <FormField
               id="firstName"
               name="firstName"
-              label="FIRST NAME"
+              label={contact.labels.firstName}
               value={fields.firstName}
               onChange={handleChange}
               error={errors.firstName}
-              errorMessage="Please share your first name."
+              errorMessage={contact.errors.firstName}
             />
             <FormField
               id="partnerName"
               name="partnerName"
-              label="PARTNER'S NAME"
+              label={contact.labels.partnerName}
               value={fields.partnerName}
               onChange={handleChange}
             />
@@ -99,42 +100,42 @@ export function ContactSection() {
               id="email"
               name="email"
               type="email"
-              label="EMAIL"
+              label={contact.labels.email}
               value={fields.email}
               onChange={handleChange}
               error={errors.email}
-              errorMessage="Please enter a valid email."
+              errorMessage={contact.errors.email}
             />
             <FormField
               id="weddingDate"
               name="weddingDate"
               type="date"
-              label="WEDDING DATE"
+              label={contact.labels.weddingDate}
               value={fields.weddingDate}
               onChange={handleChange}
             />
             <FormField
               id="weddingLocation"
               name="weddingLocation"
-              label="WEDDING LOCATION"
+              label={contact.labels.weddingLocation}
               value={fields.weddingLocation}
               onChange={handleChange}
               error={errors.weddingLocation}
-              errorMessage="Please share the location."
+              errorMessage={contact.errors.weddingLocation}
             />
             <FormField
               id="guests"
               name="guests"
               type="number"
               min={0}
-              label="NUMBER OF GUESTS"
+              label={contact.labels.guests}
               value={fields.guests}
               onChange={handleChange}
             />
             <FormField
               id="howFound"
               name="howFound"
-              label="HOW DID YOU FIND ME?"
+              label={contact.labels.howFound}
               value={fields.howFound}
               onChange={handleChange}
               fullWidth
@@ -143,16 +144,16 @@ export function ContactSection() {
               id="message"
               name="message"
               as="textarea"
-              label="TELL ME ABOUT YOUR WEDDING..."
+              label={contact.labels.message}
               value={fields.message}
               onChange={handleChange}
               error={errors.message}
-              errorMessage="Please tell me a little about your day."
+              errorMessage={contact.errors.message}
               fullWidth
             />
             <div className="col-span-full">
               <Button as="button" type="submit" variant="solid-dark">
-                SEND MESSAGE
+                {contact.submit}
               </Button>
             </div>
           </form>

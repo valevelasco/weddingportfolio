@@ -1,4 +1,4 @@
-import type { StoryPlaceholder } from '@/data/content';
+import type { StoryPlaceholder } from '@/i18n/types';
 
 interface TextureBannerProps extends StoryPlaceholder {
   maxHeightPx?: number;

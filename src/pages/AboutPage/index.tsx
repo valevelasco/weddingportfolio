@@ -5,12 +5,14 @@ import { TextureBanner } from '@/components/molecules/TextureBanner';
 import { ClosingCTA } from '@/components/organisms/ClosingCTA';
 import { SimpleFooter } from '@/components/organisms/SimpleFooter';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export function AboutPage() {
+  const { t } = useLanguage();
+
   useDocumentMeta({
-    title: 'About Valeria | Valeria Velasco Photography',
-    description:
-      'Colombian by birth, Swiss by home — get to know the photographer behind Valeria Velasco Photography.',
+    title: t.aboutPage.seoTitle,
+    description: t.aboutPage.seoDescription,
   });
 
   return (
@@ -19,12 +21,8 @@ export function AboutPage() {
       <main>
         <AboutHero />
         <AboutStory />
-        <TextureBanner
-          label="STUDIO / TRAVEL IMAGE — SWISS LANDSCAPE OR WORKSPACE"
-          aspect="21/9"
-          texture="b"
-        />
-        <ClosingCTA title="Based in Switzerland. Working across Europe." />
+        <TextureBanner label={t.aboutPage.bannerLabel} aspect="21/9" texture="b" />
+        <ClosingCTA title={t.aboutPage.closingTitle} />
       </main>
       <SimpleFooter />
     </div>

@@ -1,9 +1,9 @@
 import { Reveal } from '@/components/atoms/Reveal';
 import { Eyebrow } from '@/components/atoms/Eyebrow';
-import type { StoryNote } from '@/data/content';
+import type { StoryNoteText } from '@/i18n/types';
 
 interface StoryNoteSectionProps {
-  note: StoryNote;
+  note: StoryNoteText;
   maxWidthClass?: string;
   paddingTop?: boolean;
 }

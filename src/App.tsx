@@ -6,10 +6,11 @@ import { StoriesPage } from '@/pages/StoriesPage';
 import { StoryPage } from '@/pages/StoryPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ScrollToHash } from '@/components/atoms/ScrollToHash';
+import { LanguageProvider } from '@/i18n/LanguageContext';
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -19,7 +20,7 @@ function App() {
         <Route path="/stories/:slug" element={<StoryPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </LanguageProvider>
   );
 }
 

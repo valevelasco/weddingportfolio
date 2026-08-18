@@ -5,12 +5,14 @@ import { SectionTitle } from '@/components/atoms/SectionTitle';
 import { StoriesGrid } from '@/components/organisms/StoriesGrid';
 import { SimpleFooter } from '@/components/organisms/SimpleFooter';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export function StoriesPage() {
+  const { t } = useLanguage();
+
   useDocumentMeta({
-    title: 'Portfolio — All Stories | Valeria Velasco Photography',
-    description:
-      'A collection of wedding stories photographed across Switzerland and Europe by Valeria Velasco Photography.',
+    title: t.storiesPage.seoTitle,
+    description: t.storiesPage.seoDescription,
   });
 
   return (
@@ -18,8 +20,8 @@ export function StoriesPage() {
       <PageHeader />
       <main>
         <Reveal className="pt-[min(10vw,100px)] pb-14 px-[6vw] text-center">
-          <Eyebrow className="mb-3.5">THE FULL COLLECTION</Eyebrow>
-          <SectionTitle size="h2-xl">Stories</SectionTitle>
+          <Eyebrow className="mb-3.5">{t.storiesPage.eyebrow}</Eyebrow>
+          <SectionTitle size="h2-xl">{t.storiesPage.title}</SectionTitle>
         </Reveal>
         <StoriesGrid />
       </main>

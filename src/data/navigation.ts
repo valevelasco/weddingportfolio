@@ -1,46 +1,42 @@
-export interface NavLink {
-  label: string;
-  href: string;
-}
+/**
+ * Structural nav data only — hrefs/routes are language-independent.
+ * Labels come from the active Dictionary (src/i18n) via `id`.
+ */
+export type NavId = 'home' | 'portfolio' | 'about' | 'experience' | 'contact';
 
 /** In-page anchors, used by the homepage's own Navbar/Footer/MobileMenu. */
-export const navLinks: NavLink[] = [
-  { label: 'HOME', href: '#home' },
-  { label: 'PORTFOLIO', href: '#portfolio' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'EXPERIENCE', href: '#experience' },
-  { label: 'CONTACT', href: '#contact' },
+export const navHrefs: { id: NavId; href: string }[] = [
+  { id: 'home', href: '#home' },
+  { id: 'portfolio', href: '#portfolio' },
+  { id: 'about', href: '#about' },
+  { id: 'experience', href: '#experience' },
+  { id: 'contact', href: '#contact' },
 ];
 
-export interface SiteNavLink {
-  label: string;
+export interface SiteNavRoute {
+  id: NavId;
   to: string;
   /** Matched against the current pathname to underline the active link. */
   matchPath?: string;
 }
 
 /** Cross-page routes, used by PageHeader on About/Approach/Stories/Story. */
-export const siteNavLinks: SiteNavLink[] = [
-  { label: 'HOME', to: '/', matchPath: '/' },
-  { label: 'PORTFOLIO', to: '/stories', matchPath: '/stories' },
-  { label: 'ABOUT', to: '/about', matchPath: '/about' },
-  { label: 'EXPERIENCE', to: '/#experience' },
-  { label: 'CONTACT', to: '/#contact' },
+export const siteNavRoutes: SiteNavRoute[] = [
+  { id: 'home', to: '/', matchPath: '/' },
+  { id: 'portfolio', to: '/stories', matchPath: '/stories' },
+  { id: 'about', to: '/about', matchPath: '/about' },
+  { id: 'experience', to: '/#experience' },
+  { id: 'contact', to: '/#contact' },
 ];
 
-export interface LanguageOption {
-  code: string;
-}
+export type LanguageCode = 'EN' | 'FR' | 'DE';
 
-export const languages: LanguageOption[] = [{ code: 'EN' }, { code: 'FR' }, { code: 'DE' }];
+export const languageCodes: LanguageCode[] = ['EN', 'FR', 'DE'];
 
-export interface SocialLink {
-  label: string;
-  href: string;
-}
+export type SocialId = 'instagram' | 'pinterest' | 'email';
 
-export const socials: SocialLink[] = [
-  { label: 'INSTAGRAM', href: '#' },
-  { label: 'PINTEREST', href: '#' },
-  { label: 'EMAIL', href: 'mailto:hello@valeriavelasco.com' },
+export const socialHrefs: { id: SocialId; href: string }[] = [
+  { id: 'instagram', href: '#' },
+  { id: 'pinterest', href: '#' },
+  { id: 'email', href: 'mailto:hello@valeriavelasco.com' },
 ];

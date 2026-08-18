@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { TextureBlock } from '@/components/atoms/TextureBlock';
-import type { Story } from '@/data/content';
+import type { Story } from '@/i18n/types';
 
 interface StoryCardProps {
   story: Story;
+  viewStoryLabel: string;
 }
 
-export function StoryCard({ story }: StoryCardProps) {
+export function StoryCard({ story, viewStoryLabel }: StoryCardProps) {
   return (
     <Link to={`/stories/${story.slug}`} className="group flex flex-col gap-5 text-ink">
       <div className="overflow-hidden">
@@ -20,7 +21,9 @@ export function StoryCard({ story }: StoryCardProps) {
       <div>
         <p className="text-nav tracking-wide2 text-muted m-0 mb-2">{story.location}</p>
         <h3 className="font-serif font-medium text-h3 text-ink m-0 mb-2.5">{story.title}</h3>
-        <span className="text-nav tracking-tightish border-b border-ink pb-0.5">VIEW STORY</span>
+        <span className="text-nav tracking-tightish border-b border-ink pb-0.5">
+          {viewStoryLabel}
+        </span>
       </div>
     </Link>
   );

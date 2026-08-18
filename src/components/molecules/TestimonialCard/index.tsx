@@ -1,4 +1,4 @@
-import type { Testimonial } from '@/data/content';
+import type { Testimonial } from '@/i18n/types';
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
