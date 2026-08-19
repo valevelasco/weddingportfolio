@@ -10,13 +10,21 @@ interface StoryCardProps {
 export function StoryCard({ story, viewStoryLabel }: StoryCardProps) {
   return (
     <Link to={`/stories/${story.slug}`} className="group flex flex-col gap-5 text-ink">
-      <div className="overflow-hidden">
-        <TextureBlock
-          label={story.imgLabel}
-          aspect="4/5"
-          texture={story.texture}
-          className="transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
-        />
+      <div className="overflow-hidden aspect-[4/5]">
+        {story.image ? (
+          <img
+            src={story.image}
+            alt=""
+            className="w-full h-full object-cover transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
+          />
+        ) : (
+          <TextureBlock
+            label={story.imgLabel}
+            aspect="4/5"
+            texture={story.texture}
+            className="transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
+          />
+        )}
       </div>
       <div>
         <p className="text-nav tracking-wide2 text-muted m-0 mb-2">{story.location}</p>

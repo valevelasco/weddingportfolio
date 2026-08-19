@@ -2,7 +2,6 @@ import { Reveal } from '@/components/atoms/Reveal';
 import { Eyebrow } from '@/components/atoms/Eyebrow';
 import { SectionTitle } from '@/components/atoms/SectionTitle';
 import { TextLink } from '@/components/atoms/TextLink';
-import { TextureBlock } from '@/components/atoms/TextureBlock';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 export function PhilosophySection() {
@@ -23,7 +22,13 @@ export function PhilosophySection() {
       </Reveal>
 
       <Reveal delayMs={120} className="order-1 lg:order-2">
-        <TextureBlock label={philosophy.placeholderLabel} aspect="4/5" texture="a-fine" />
+        <div className="relative aspect-[4/5] border border-border overflow-hidden">
+          <img
+            src="/images/home/philosophy/philosophy.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
       </Reveal>
     </section>
   );

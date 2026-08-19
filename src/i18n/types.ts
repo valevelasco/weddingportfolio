@@ -6,6 +6,7 @@ export interface Story {
   title: string;
   imgLabel: string;
   texture: 'a' | 'a-fine' | 'b';
+  image?: string;
 }
 
 export interface ExperiencePhase {
@@ -28,6 +29,7 @@ export interface StoryPlaceholder {
   label: string;
   aspect: string;
   texture: 'a' | 'a-fine' | 'b';
+  image?: string;
 }
 
 export interface StoryNoteText {

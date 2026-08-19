@@ -21,7 +21,7 @@ export function Hero() {
           playsInline
           autoPlay
           preload="auto"
-          poster="/image-1.jpg"
+          poster="/images/home/hero/cover-desktop.jpg"
           className="absolute inset-0 w-full h-full object-cover"
           aria-hidden="true"
         >
@@ -30,13 +30,16 @@ export function Hero() {
       )}
 
       {(hasError || reducedMotion) && (
-        <img
-          src="/image-1.jpg"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-          // @ts-expect-error React 18's DOM typings don't include fetchpriority yet; lowercase is the correct HTML attribute name.
-          fetchpriority="high"
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/images/home/hero/cover-mobile.jpg" />
+          <img
+            src="/images/home/hero/cover-desktop.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            // @ts-expect-error React 18's DOM typings don't include fetchpriority yet; lowercase is the correct HTML attribute name.
+            fetchpriority="high"
+          />
+        </picture>
       )}
 
       <div
