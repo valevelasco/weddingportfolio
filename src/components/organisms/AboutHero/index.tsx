@@ -1,7 +1,6 @@
 import { Reveal } from '@/components/atoms/Reveal';
 import { Eyebrow } from '@/components/atoms/Eyebrow';
 import { SectionTitle } from '@/components/atoms/SectionTitle';
-import { TextureBlock } from '@/components/atoms/TextureBlock';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 export function AboutHero() {
@@ -21,7 +20,13 @@ export function AboutHero() {
       </Reveal>
 
       <Reveal delayMs={120}>
-        <TextureBlock label={hero.placeholderLabel} aspect="3/4" texture="b" />
+        <div className="relative aspect-[3/4] border border-border overflow-hidden">
+          <img
+            src="/images/about-page/hero/portrait.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
       </Reveal>
     </section>
   );
