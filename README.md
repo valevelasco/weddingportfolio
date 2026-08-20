@@ -110,9 +110,6 @@ src/
     NotFoundPage/
   hooks/
     useScrollProgress.ts   scroll position / "scrolled past threshold"
-    usePingPongVideo.ts    forward→reverse (rAF, never negative
-                           playbackRate) video loop, falls back to a
-                           static image on error or prefers-reduced-motion
     useInViewReveal.ts     IntersectionObserver fade-up trigger
     useDocumentMeta.ts     sets document.title + meta description per route
   data/
@@ -134,11 +131,11 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
 - `image-1.jpg` / `image-2.jpg` are generated placeholder JPGs (not real
   photography) so the app runs and the LCP hero image has something to
   render. Replace them with real photos before shipping.
-- `transition.mp4` is **not included** — no video asset existed in the
-  design. Drop a real ping-pong-ready MP4 at `public/transition.mp4` and the
-  hero will pick it up automatically; until then, `usePingPongVideo` detects
-  the missing/broken source and falls back to the static poster image, exactly
-  per the ping-pong hook spec.
+- The hero originally had a ping-pong background video hook per the stack
+  spec, but no video asset ever existed in the source design (or since) —
+  it only ever showed the static poster. The video path and hook were
+  removed; the hero now renders `/images/home/hero/cover-desktop.jpg`
+  (`cover-mobile.jpg` under 768px via `<picture>`) directly.
 - The JSON-LD in `index.html` is typed for this business (a Switzerland-based
   wedding photographer) rather than the generic "reformas en Madrid"
   LocalBusiness boilerplate — update the `url`, `email` and `address` fields
@@ -179,8 +176,8 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
 
 ## Before deploying
 
-- Replace `image-1.jpg`, `image-2.jpg`, add `transition.mp4`, and swap the
-  remaining `TextureBlock`/`TextureBanner` placeholders for real photography.
+- Swap any remaining `TextureBlock`/`TextureBanner` placeholders for real
+  photography.
 - Write real detail content for the Sofia & Marco and Léa & Julian stories,
   in all three languages (add entries to `storyDetails` in each of
   `src/i18n/dictionaries/{en,fr,de}.ts`).
