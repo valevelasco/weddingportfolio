@@ -3,8 +3,9 @@
 Wedding photography site, implemented from the Claude Design export
 (`Homepage.dc.html`, `About.dc.html`, `Approach.dc.html`, `Stories.dc.html`,
 `Story.dc.html`) as a Vite + React 18 + TypeScript app with Tailwind CSS,
-built with Atomic Design, client-side routing (react-router-dom), and a
-custom EN/FR/DE i18n layer.
+built with Atomic Design, client-side routing (react-router-dom), a custom
+EN/FR/DE i18n layer, and a [Sanity](https://www.sanity.io) CMS (`studio/`)
+so wedding stories can be added without touching code.
 
 ## Commands
 
@@ -16,6 +17,11 @@ npm run preview  # serve the dist/ build locally
 npm run lint      # ESLint
 npm run format    # Prettier --write
 ```
+
+Wedding stories won't load until Sanity is configured — copy `.env.example`
+to `.env` and see `studio/README.md` for the one-time setup (creating a free
+Sanity project). Non-technical day-to-day editing: `GUIA-DE-CONTENIDO.md`
+(in Spanish).
 
 ## Routes
 
@@ -36,6 +42,43 @@ needs to rewrite unknown paths to `index.html` (otherwise a direct load of
 `/about` 404s). `public/_redirects` covers Netlify; Vercel/Cloudflare Pages/etc.
 need an equivalent rewrite rule configured on the host.
 
+## Content management (Sanity)
+
+Wedding stories (the homepage teaser, the `/stories` collection, and every
+`/stories/:slug` detail page) are **not** hardcoded — they're fetched at
+runtime from a Sanity dataset, so the photographer can publish a new story
+from a web editor without a code change or a deploy.
+
+- `studio/` — the Sanity Studio (a separate app, own `package.json`, own
+  React version). See `studio/README.md` for one-time setup (creating the
+  free Sanity project, env vars, CORS, deploying the Studio online) and
+  `studio/schemaTypes/story.ts` for the content model.
+- `src/lib/sanity.ts` — the read-only client (`sanityClient`) and
+  `urlFor()` image URL builder. `isSanityConfigured` is `false` until
+  `VITE_SANITY_PROJECT_ID` is set, so the app degrades gracefully (empty
+  state, not a crash) before the CMS is wired up.
+- `src/types/story.ts` — the `SanityStory` type + GROQ projection shared by
+  both fetching hooks.
+- `src/hooks/useStories.ts` / `useStory.ts` — fetch the full collection
+  (newest first) / a single story by slug, each with `loading`/`error`
+  state.
+- Every image field is optional — a story can be published with just text,
+  and any missing photo shows a "coming soon" placeholder
+  (`TextureBlock`/`TextureBanner`) instead of breaking the layout.
+- **Content strategy**: story content (couple names, location, intro,
+  notes) is written **once**, not per-language — it displays as-is
+  regardless of the visitor's selected site language. Only the site's fixed
+  chrome (nav, buttons, form labels, SEO copy — everything in `src/i18n/`)
+  is professionally translated into EN/FR/DE. This was a deliberate
+  simplification: translating every story into 3 languages isn't realistic
+  for a single photographer maintaining her own content, whereas the
+  chrome rarely changes and was worth translating once, carefully. If
+  per-language story content is wanted later, the schema and fetching
+  layer would need per-locale fields (documented as a possible extension
+  in `studio/README.md`).
+- The homepage teaser is simply the two most recently published stories —
+  no manual "featured" flag to manage.
+
 ## Internationalization (EN / FR / DE)
 
 The language switcher in the header (homepage `Navbar` and the subpages'
@@ -44,17 +87,16 @@ The language switcher in the header (homepage `Navbar` and the subpages'
 context, persists it to `localStorage` (`vvp-language`), and keeps
 `<html lang>` in sync.
 
-- `src/i18n/types.ts` — the `Dictionary` interface: every piece of copy on
-  the site (nav labels, section text, form labels/errors, the three stories,
-  the one full story narrative, approach principles, per-page SEO
-  title/description) as a typed shape.
+- `src/i18n/types.ts` — the `Dictionary` interface: every piece of *fixed
+  chrome* copy on the site (nav labels, section text, form labels/errors,
+  approach principles, per-page SEO title/description) as a typed shape.
+  Wedding story content is not part of this — see "Content management"
+  above.
 - `src/i18n/dictionaries/{en,fr,de}.ts` — one full implementation of
-  `Dictionary` per language. These are self-contained (structural fields
-  like `slug`/`texture`/`aspect` are duplicated across languages rather than
-  cross-referenced) so each file is simple to read and edit independently.
+  `Dictionary` per language.
 - Components call `const { t } = useLanguage()` and read straight off `t`
-  (e.g. `t.hero.titleLine1`, `t.stories`, `t.storyDetails['anna-elias']`) —
-  no key lookups or fallback strings scattered through JSX.
+  (e.g. `t.hero.titleLine1`, `t.home.contact.labels.email`) — no key
+  lookups or fallback strings scattered through JSX.
 - `src/data/navigation.ts` holds only the **structural**, language-independent
   nav data (hrefs/routes, keyed by a stable `id`); the visible label always
   comes from `t.nav[id]`.
@@ -69,18 +111,13 @@ missing field), register it in the `dictionaries` map in
 `LanguageContext.tsx`, and add the code to `languageCodes` in
 `src/data/navigation.ts`.
 
-**Known limitation**: only the `anna-elias` story has full narrative content
-in any language (see "Story detail content" below) — that's a property of
-the source design, not of the translation layer, and applies identically in
-all three languages.
-
 ## Folder structure
 
 ```
+studio/                  Sanity Studio (content editor) — see studio/README.md
+GUIA-DE-CONTENIDO.md      non-technical "how to add a story" guide, in Spanish
 public/
   favicon.svg          # brand monogram
-  image-1.jpg           # placeholder — hero background / poster
-  image-2.jpg           # placeholder — secondary photo
   robots.txt, sitemap.xml, _redirects
 src/
   i18n/
@@ -88,6 +125,10 @@ src/
     LanguageContext.tsx    LanguageProvider + useLanguage() hook
     dictionaries/
       en.ts, fr.ts, de.ts  one full Dictionary implementation per language
+  lib/
+    sanity.ts              read-only Sanity client + urlFor() image builder
+  types/
+    story.ts                SanityStory type + shared GROQ projection
   components/
     atoms/              Button, Logo, Eyebrow, SectionTitle, TextLink,
                          TextureBlock, Reveal, ScrollToHash
@@ -112,6 +153,7 @@ src/
     useScrollProgress.ts   scroll position / "scrolled past threshold"
     useInViewReveal.ts     IntersectionObserver fade-up trigger
     useDocumentMeta.ts     sets document.title + meta description per route
+    useStories.ts, useStory.ts   fetch wedding stories from Sanity
   data/
     navigation.ts          structural-only nav data (hrefs/routes by id);
                            labels come from the active Dictionary
@@ -128,9 +170,6 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
   as-is per the fidelity requirement — no real photography assets were part
   of the design export, so `TextureBlock`/`TextureBanner` render them
   faithfully as placeholders. Swap them for real `<img>`s once photos exist.
-- `image-1.jpg` / `image-2.jpg` are generated placeholder JPGs (not real
-  photography) so the app runs and the LCP hero image has something to
-  render. Replace them with real photos before shipping.
 - The hero originally had a ping-pong background video hook per the stack
   spec, but no video asset ever existed in the source design (or since) —
   it only ever showed the static poster. The video path and hook were
@@ -150,15 +189,10 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
   breakpoint up. The source design fixed it at two columns unconditionally,
   which breaks unusably on narrow phones — this is an intentional deviation
   from literal fidelity, made to satisfy the mobile-first requirement.
-- **Story detail content**: `Story.dc.html` in the source is a single static
-  page (Anna & Elias, Lauterbrunnen) — every "VIEW STORY" link across the
-  whole site (homepage teaser, the full Stories collection) points to that
-  same file; there's no per-story detail content for Sofia & Marco or
-  Léa & Julian in the export. `StoryPage` is built to be properly
-  data-driven per slug (`t.storyDetails` in each language dictionary), but
-  only `anna-elias` has content — any other slug falls back to it, which
-  reproduces the source design's actual behavior exactly while leaving the
-  route structure ready for when the other two stories are written.
+- **Story content is dynamic** (see "Content management" above) — the
+  source design's example stories (Anna & Elias, Sofia & Marco, Léa &
+  Julian) were placeholders for the layout, not real content to preserve.
+  Real stories are published through the Sanity Studio.
 - Subpages use their own `PageHeader` (static, not fixed/scroll-aware) and
   `SimpleFooter` (copyright line only), matching the source design's simpler
   chrome on About/Approach/Stories/Story versus the homepage's animated,
@@ -176,13 +210,14 @@ tailwind.config.ts        design tokens (colors, type scale, tracking, screens)
 
 ## Before deploying
 
-- Swap any remaining `TextureBlock`/`TextureBanner` placeholders for real
-  photography.
-- Write real detail content for the Sofia & Marco and Léa & Julian stories,
-  in all three languages (add entries to `storyDetails` in each of
-  `src/i18n/dictionaries/{en,fr,de}.ts`).
-- Update the canonical domain in `index.html` (`og:url`, `twitter:image`,
-  JSON-LD) and in `public/robots.txt` / `public/sitemap.xml`.
+- Create the Sanity project and publish real wedding stories (`studio/README.md`,
+  `GUIA-DE-CONTENIDO.md`) — without it, story sections show a "coming soon"
+  message instead of crashing, but there's nothing to show visitors yet.
+- Set `VITE_SANITY_PROJECT_ID` / `VITE_SANITY_DATASET` in the hosting
+  provider's environment variables (not just a local `.env`), and add the
+  production domain to Sanity's CORS origins.
+- Update the canonical domain in `index.html` (`og:url`, `og:image`,
+  `twitter:image`, JSON-LD) and in `public/robots.txt` / `public/sitemap.xml`.
 - Configure your static host's SPA rewrite (see Routes above).
 - Wire the contact form's `handleSubmit` to a real backend/email endpoint —
   it currently only validates client-side and shows a success state.

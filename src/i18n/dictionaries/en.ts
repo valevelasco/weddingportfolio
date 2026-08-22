@@ -117,70 +117,12 @@ export const en: Dictionary = {
       submit: 'SEND MESSAGE',
     },
   },
-  stories: [
-    {
-      slug: 'anna-elias',
-      location: 'LAUTERBRUNNEN, SWITZERLAND',
-      title: 'Anna & Elias',
-      imgLabel: 'HORIZONTAL — CEREMONY, VALLEY BACKDROP',
-      texture: 'b',
-    },
-    {
-      slug: 'sofia-marco',
-      location: 'LAKE GARDA, ITALY',
-      title: 'Sofia & Marco',
-      imgLabel: 'VERTICAL — COUPLE PORTRAIT, GOLDEN HOUR',
-      texture: 'a-fine',
-    },
-    {
-      slug: 'lea-julian',
-      location: 'GSTAAD, SWITZERLAND',
-      title: 'Léa & Julian',
-      imgLabel: 'HORIZONTAL — RECEPTION, MOUNTAIN CHALET',
-      texture: 'b',
-    },
-  ],
-  storyDetails: {
-    'anna-elias': {
-      slug: 'anna-elias',
-      location: 'LAUTERBRUNNEN, SWITZERLAND',
-      title: 'Anna & Elias',
-      intro:
-        "They chose the valley for its quiet — a small ceremony at the foot of the waterfalls, family gathered close, and an afternoon that moved at its own pace. What stayed with me were the pauses: Anna's father before the first look, the walk down between two rows of wildflowers, the long light after dinner.",
-      heroBanner: {
-        label: 'FULL-WIDTH HERO — CEREMONY WIDE SHOT, VALLEY BACKDROP',
-        aspect: '16/9',
-        texture: 'b',
-      },
-      detailPair: [
-        { label: 'VERTICAL — DETAILS, RINGS & INVITATION SUITE', aspect: '3/4', texture: 'b' },
-        {
-          label: 'VERTICAL — BRIDE GETTING READY, WINDOW LIGHT',
-          aspect: '3/4',
-          texture: 'a-fine',
-        },
-      ],
-      midBanner: { label: 'FULL-WIDTH — WALKING DOWN THE AISLE', aspect: '21/9', texture: 'b' },
-      ceremonyNote: {
-        eyebrow: 'CEREMONY',
-        text: 'A short reading, two rings passed between shaking hands, and the kind of silence that only happens once. No program, no music — just the sound of the river below.',
-      },
-      momentsTrio: [
-        { label: 'COUPLE PORTRAIT — GOLDEN HOUR', aspect: '4/5', texture: 'b' },
-        { label: 'FAMILY & FRIENDS — GROUP GATHERING', aspect: '4/5', texture: 'a-fine' },
-        { label: 'RECEPTION — FIRST DANCE, CANDLELIGHT', aspect: '4/5', texture: 'b' },
-      ],
-      candidNote: {
-        eyebrow: 'A CANDID MOMENT',
-        text: "Between toasts, Elias's grandmother pulled Anna aside and said something that made them both cry laughing. Nobody remembers the joke. Everyone remembers the sound.",
-      },
-      closingBanner: {
-        label: 'CLOSING PHOTOGRAPH — LEAVING THE VALLEY, NIGHT',
-        aspect: '4/5',
-        texture: 'b',
-        maxHeightPx: 820,
-      },
-    },
+  stories: {
+    photoComingSoon: 'PHOTO COMING SOON',
+    comingSoon: 'New stories are on their way — check back soon.',
+    notFoundTitle: 'Story not found',
+    notFoundBody: "This story doesn't exist or may have been moved.",
+    loading: 'Loading story…',
   },
   aboutPage: {
     seoTitle: 'About Valeria | Valeria Velasco Photography',

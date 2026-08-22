@@ -21,7 +21,7 @@ export function AboutPage() {
       <main>
         <AboutHero />
         <AboutStory />
-        <TextureBanner label={t.aboutPage.bannerLabel} aspect="21/9" texture="b" />
+        <TextureBanner fallbackLabel={t.aboutPage.bannerLabel} aspect="21/9" />
         <ClosingCTA title={t.aboutPage.closingTitle} />
       </main>
       <SimpleFooter />

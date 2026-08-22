@@ -123,78 +123,12 @@ export const de: Dictionary = {
       submit: 'NACHRICHT SENDEN',
     },
   },
-  stories: [
-    {
-      slug: 'anna-elias',
-      location: 'LAUTERBRUNNEN, SCHWEIZ',
-      title: 'Anna & Elias',
-      imgLabel: 'QUERFORMAT — ZEREMONIE, TALKULISSE',
-      texture: 'b',
-    },
-    {
-      slug: 'sofia-marco',
-      location: 'GARDASEE, ITALIEN',
-      title: 'Sofia & Marco',
-      imgLabel: 'HOCHFORMAT — PAARPORTRÄT, GOLDENE STUNDE',
-      texture: 'a-fine',
-    },
-    {
-      slug: 'lea-julian',
-      location: 'GSTAAD, SCHWEIZ',
-      title: 'Léa & Julian',
-      imgLabel: 'QUERFORMAT — EMPFANG, BERGCHALET',
-      texture: 'b',
-    },
-  ],
-  storyDetails: {
-    'anna-elias': {
-      slug: 'anna-elias',
-      location: 'LAUTERBRUNNEN, SCHWEIZ',
-      title: 'Anna & Elias',
-      intro:
-        'Sie wählten das Tal wegen seiner Stille — eine kleine Zeremonie am Fuß der Wasserfälle, die Familie nah beieinander, und ein Nachmittag, der sein eigenes Tempo fand. Was mir geblieben ist, sind die Pausen: Annas Vater vor dem ersten Blick, der Gang zwischen zwei Reihen wilder Blumen, das lange Licht nach dem Abendessen.',
-      heroBanner: {
-        label: 'VOLLBREITE — WEITE EINSTELLUNG DER ZEREMONIE, TALKULISSE',
-        aspect: '16/9',
-        texture: 'b',
-      },
-      detailPair: [
-        {
-          label: 'HOCHFORMAT — DETAILS, RINGE UND EINLADUNGSSET',
-          aspect: '3/4',
-          texture: 'b',
-        },
-        {
-          label: 'HOCHFORMAT — BRAUT BEIM VORBEREITEN, FENSTERLICHT',
-          aspect: '3/4',
-          texture: 'a-fine',
-        },
-      ],
-      midBanner: {
-        label: 'VOLLBREITE — DER GANG ZUM ALTAR',
-        aspect: '21/9',
-        texture: 'b',
-      },
-      ceremonyNote: {
-        eyebrow: 'ZEREMONIE',
-        text: 'Eine kurze Lesung, zwei Ringe, die zwischen zitternden Händen weitergereicht wurden, und die Art von Stille, die es nur einmal gibt. Kein Programm, keine Musik — nur das Rauschen des Flusses unten im Tal.',
-      },
-      momentsTrio: [
-        { label: 'PAARPORTRÄT — GOLDENE STUNDE', aspect: '4/5', texture: 'b' },
-        { label: 'FAMILIE UND FREUNDE — GRUPPENBILD', aspect: '4/5', texture: 'a-fine' },
-        { label: 'EMPFANG — ERÖFFNUNGSTANZ, KERZENLICHT', aspect: '4/5', texture: 'b' },
-      ],
-      candidNote: {
-        eyebrow: 'EIN UNVERSTELLTER MOMENT',
-        text: "Zwischen zwei Trinksprüchen nahm Elias' Großmutter Anna beiseite und sagte etwas, das die beiden vor Lachen zum Weinen brachte. Niemand erinnert sich an den Witz. Alle erinnern sich an das Lachen.",
-      },
-      closingBanner: {
-        label: 'ABSCHLUSSFOTOGRAFIE — AUFBRUCH AUS DEM TAL, BEI NACHT',
-        aspect: '4/5',
-        texture: 'b',
-        maxHeightPx: 820,
-      },
-    },
+  stories: {
+    photoComingSoon: 'FOTO FOLGT IN KÜRZE',
+    comingSoon: 'Neue Geschichten folgen bald — schauen Sie bald wieder vorbei.',
+    notFoundTitle: 'Geschichte nicht gefunden',
+    notFoundBody: 'Diese Geschichte existiert nicht oder wurde verschoben.',
+    loading: 'Geschichte wird geladen…',
   },
   aboutPage: {
     seoTitle: 'Über Valeria | Valeria Velasco Photography',

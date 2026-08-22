@@ -123,78 +123,12 @@ export const fr: Dictionary = {
       submit: 'ENVOYER LE MESSAGE',
     },
   },
-  stories: [
-    {
-      slug: 'anna-elias',
-      location: 'LAUTERBRUNNEN, SUISSE',
-      title: 'Anna & Elias',
-      imgLabel: 'HORIZONTALE — CÉRÉMONIE, DÉCOR DE VALLÉE',
-      texture: 'b',
-    },
-    {
-      slug: 'sofia-marco',
-      location: 'LAC DE GARDE, ITALIE',
-      title: 'Sofia & Marco',
-      imgLabel: 'VERTICALE — PORTRAIT DE COUPLE, HEURE DORÉE',
-      texture: 'a-fine',
-    },
-    {
-      slug: 'lea-julian',
-      location: 'GSTAAD, SUISSE',
-      title: 'Léa & Julian',
-      imgLabel: 'HORIZONTALE — RÉCEPTION, CHALET DE MONTAGNE',
-      texture: 'b',
-    },
-  ],
-  storyDetails: {
-    'anna-elias': {
-      slug: 'anna-elias',
-      location: 'LAUTERBRUNNEN, SUISSE',
-      title: 'Anna & Elias',
-      intro:
-        "Ils ont choisi la vallée pour sa tranquillité — une petite cérémonie au pied des cascades, la famille réunie tout près, et un après-midi qui suivait son propre rythme. Ce qui m'est resté, ce sont les pauses : le père d'Anna avant le premier regard, la marche entre deux rangées de fleurs sauvages, la lumière tardive après le dîner.",
-      heroBanner: {
-        label: "PLEINE LARGEUR — VUE D'ENSEMBLE DE LA CÉRÉMONIE, DÉCOR DE VALLÉE",
-        aspect: '16/9',
-        texture: 'b',
-      },
-      detailPair: [
-        {
-          label: 'VERTICALE — DÉTAILS, ALLIANCES ET SUITE DE FAIRE-PART',
-          aspect: '3/4',
-          texture: 'b',
-        },
-        {
-          label: 'VERTICALE — LA MARIÉE SE PRÉPARE, LUMIÈRE DE FENÊTRE',
-          aspect: '3/4',
-          texture: 'a-fine',
-        },
-      ],
-      midBanner: {
-        label: "PLEINE LARGEUR — DESCENTE VERS L'AUTEL",
-        aspect: '21/9',
-        texture: 'b',
-      },
-      ceremonyNote: {
-        eyebrow: 'CÉRÉMONIE',
-        text: "Une courte lecture, deux alliances passées entre des mains tremblantes, et le genre de silence qui n'arrive qu'une fois. Pas de programme, pas de musique — juste le bruit de la rivière en contrebas.",
-      },
-      momentsTrio: [
-        { label: 'PORTRAIT DE COUPLE — HEURE DORÉE', aspect: '4/5', texture: 'b' },
-        { label: 'FAMILLE ET AMIS — RASSEMBLEMENT DE GROUPE', aspect: '4/5', texture: 'a-fine' },
-        { label: 'RÉCEPTION — PREMIÈRE DANSE, LUMIÈRE DES BOUGIES', aspect: '4/5', texture: 'b' },
-      ],
-      candidNote: {
-        eyebrow: 'UN MOMENT SPONTANÉ',
-        text: "Entre deux toasts, la grand-mère d'Elias a pris Anna à part et lui a dit quelque chose qui les a fait pleurer de rire tous les deux. Personne ne se souvient de la blague. Tout le monde se souvient du rire.",
-      },
-      closingBanner: {
-        label: 'PHOTOGRAPHIE FINALE — QUITTER LA VALLÉE, DE NUIT',
-        aspect: '4/5',
-        texture: 'b',
-        maxHeightPx: 820,
-      },
-    },
+  stories: {
+    photoComingSoon: 'PHOTO À VENIR',
+    comingSoon: 'De nouvelles histoires arrivent bientôt — revenez vite.',
+    notFoundTitle: 'Histoire introuvable',
+    notFoundBody: "Cette histoire n'existe pas ou a peut-être été déplacée.",
+    loading: "Chargement de l'histoire…",
   },
   aboutPage: {
     seoTitle: 'À propos de Valeria | Valeria Velasco Photography',

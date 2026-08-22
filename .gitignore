@@ -11,6 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+
+# Sanity Studio
+studio/node_modules
+studio/dist
 
 # Editor directories and files
 .vscode/*

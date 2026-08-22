@@ -1,27 +1,31 @@
 import { Link } from 'react-router-dom';
 import { TextureBlock } from '@/components/atoms/TextureBlock';
-import type { Story } from '@/i18n/types';
+import { urlFor } from '@/lib/sanity';
+import type { SanityStory } from '@/types/story';
 
 interface StoryCardProps {
-  story: Story;
+  story: SanityStory;
   viewStoryLabel: string;
+  photoComingSoonLabel: string;
 }
 
-export function StoryCard({ story, viewStoryLabel }: StoryCardProps) {
+export function StoryCard({ story, viewStoryLabel, photoComingSoonLabel }: StoryCardProps) {
+  const coverSrc = urlFor(story.coverImage, 800);
+
   return (
     <Link to={`/stories/${story.slug}`} className="group flex flex-col gap-5 text-ink">
       <div className="overflow-hidden aspect-[4/5]">
-        {story.image ? (
+        {coverSrc ? (
           <img
-            src={story.image}
+            src={coverSrc}
             alt=""
             className="w-full h-full object-cover transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
+            loading="lazy"
           />
         ) : (
           <TextureBlock
-            label={story.imgLabel}
+            label={photoComingSoonLabel}
             aspect="4/5"
-            texture={story.texture}
             className="transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
           />
         )}

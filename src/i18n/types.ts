@@ -1,14 +1,5 @@
 export type Language = 'en' | 'fr' | 'de';
 
-export interface Story {
-  slug: string;
-  location: string;
-  title: string;
-  imgLabel: string;
-  texture: 'a' | 'a-fine' | 'b';
-  image?: string;
-}
-
 export interface ExperiencePhase {
   name: string;
   items: string[];
@@ -23,32 +14,6 @@ export interface ApproachPrinciple {
   step: string;
   title: string;
   text: string;
-}
-
-export interface StoryPlaceholder {
-  label: string;
-  aspect: string;
-  texture: 'a' | 'a-fine' | 'b';
-  image?: string;
-}
-
-export interface StoryNoteText {
-  eyebrow: string;
-  text: string;
-}
-
-export interface StoryDetail {
-  slug: string;
-  location: string;
-  title: string;
-  intro: string;
-  heroBanner: StoryPlaceholder;
-  detailPair: StoryPlaceholder[];
-  midBanner: StoryPlaceholder;
-  ceremonyNote: StoryNoteText;
-  momentsTrio: StoryPlaceholder[];
-  candidNote: StoryNoteText;
-  closingBanner: StoryPlaceholder & { maxHeightPx: number };
 }
 
 export interface Dictionary {
@@ -135,8 +100,16 @@ export interface Dictionary {
       submit: string;
     };
   };
-  stories: Story[];
-  storyDetails: Record<string, StoryDetail>;
+  stories: {
+    /** Shown in place of any story photo that hasn't been uploaded yet. */
+    photoComingSoon: string;
+    /** Shown instead of the stories grid when there are no published stories yet. */
+    comingSoon: string;
+    /** Shown when a story slug doesn't match any published story. */
+    notFoundTitle: string;
+    notFoundBody: string;
+    loading: string;
+  };
   aboutPage: {
     seoTitle: string;
     seoDescription: string;

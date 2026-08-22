@@ -1,0 +1,23 @@
+{
+  "name": "valeria-velasco-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "@sanity/vision": "^6.10.1",
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "sanity": "^6.10.1",
+    "styled-components": "^6.5.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "typescript": "^5.5.4"
+  }
+}
