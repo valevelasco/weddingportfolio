@@ -39,8 +39,9 @@ them from other pages land on `/` and auto-scroll via `ScrollToHash`.
 
 **Deploying to a static host**: this is a client-side-routed SPA, so the host
 needs to rewrite unknown paths to `index.html` (otherwise a direct load of
-`/about` 404s). `public/_redirects` covers Netlify; Vercel/Cloudflare Pages/etc.
-need an equivalent rewrite rule configured on the host.
+`/about` 404s). `public/_redirects` covers Netlify, `vercel.json` covers
+Vercel; other hosts (Cloudflare Pages, etc.) need an equivalent rewrite rule
+configured on the host.
 
 ## Content management (Sanity)
 
