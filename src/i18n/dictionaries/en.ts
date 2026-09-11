@@ -34,7 +34,7 @@ export const en: Dictionary = {
       eyebrow: "HELLO, I'M VALERIA",
       titleLine1: 'A Colombian heart,',
       titleLine2: 'a Swiss home.',
-      body: "Trained in audiovisual storytelling, I've always been drawn to quiet moments and real emotions, now captured through wedding photography. Colombian by birth, Swiss by home, I work with couples from Switzerland and around the world, creating photographs that feel authentic, elegant and timeless.",
+      body: "Trained in audiovisual storytelling, I've always been drawn to the way real moments become lasting memories. Today, I bring that perspective to wedding photography, blending an editorial eye with an honest approach to the moments that unfold naturally. Colombian by birth, Swiss by home, I photograph couples in Switzerland and beyond, creating images that feel personal, effortless and timeless.",
       cta: 'MORE ABOUT ME',
       placeholderLabel: 'VERTICAL PORTRAIT — PHOTOGRAPHER, NATURAL LIGHT',
     },
@@ -54,28 +54,30 @@ export const en: Dictionary = {
     },
     experience: {
       title: 'The Experience',
-      subtitle: 'A calm, thoughtful approach to photographing your wedding.',
+      subtitle: 'From our first conversation to the final gallery, every detail is thoughtfully considered.',
       phases: [
         {
           name: 'BEFORE',
-          items: ['Planning', 'Timeline guidance', 'Consultation', 'Getting to know your story'],
+          tagline: 'A little planning, a lot less stress.',
+          body: "Before your wedding day, we'll talk about what matters to you, how you want the day to feel and the moments you don't want to miss.",
+          items: [
+            'Planning & timeline guidance',
+            'Pre-wedding consultation',
+            'Location & light considerations',
+            'Getting to know your story',
+          ],
         },
         {
           name: 'DURING',
-          items: [
-            'Natural direction',
-            'Candid moments',
-            'Editorial portraits',
-            'Attention to detail',
-          ],
+          tagline: "Guidance when you need it. Space when you don't.",
+          body: "I'll guide you when a little direction helps, and step back when the moment speaks for itself.",
+          items: ['Natural direction', 'Candid moments', 'Editorial portraits', 'Details & atmosphere'],
         },
         {
           name: 'AFTER',
-          items: [
-            'Carefully edited photographs',
-            'Private online gallery',
-            'Print and album options',
-          ],
+          tagline: "Photographs you'll want to return to.",
+          body: 'Your images are carefully curated and edited into a collection that tells the story of your day from beginning to end.',
+          items: ['Carefully curated gallery', 'Private online delivery', 'Print & album options'],
         },
       ],
     },
@@ -86,7 +88,8 @@ export const en: Dictionary = {
         {
           quote:
             "Valeria noticed things we didn't even know were happening — the quiet ones between the big moments.",
-          names: 'ANNA & ELIAS · LAUTERBRUNNEN',
+          names: 'GALA & THOMAS · ZURICH',
+          image: '/images/home/testimonials/gala-thomas.jpg',
         },
         {
           quote: 'She felt like a friend with a camera, not a photographer directing a shoot.',
