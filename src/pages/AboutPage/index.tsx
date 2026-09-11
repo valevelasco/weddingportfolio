@@ -20,15 +20,14 @@ export function AboutPage() {
       <main>
         <AboutHero />
         <AboutStory />
-        <div className="w-full border-t border-b border-border overflow-hidden aspect-[4/5] md:aspect-[21/9]">
-          <picture className="block w-full h-full">
-            <source media="(max-width: 767px)" srcSet="/images/about-page/banner/banner-mobile.jpg" />
+        <div className="max-w-[600px] mx-auto my-section px-[6vw]">
+          <div className="aspect-[4/5] border border-border overflow-hidden">
             <img
-              src="/images/about-page/banner/banner.jpg"
+              src="/images/about-page/banner/portrait-studio.jpg"
               alt=""
               className="w-full h-full object-cover"
             />
-          </picture>
+          </div>
         </div>
         <ClosingCTA title={t.aboutPage.closingTitle} />
       </main>
