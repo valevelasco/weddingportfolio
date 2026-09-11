@@ -54,31 +54,32 @@ export const de: Dictionary = {
     },
     experience: {
       title: 'Der Ablauf',
-      subtitle: 'Ein ruhiger, durchdachter Ansatz für die Fotografie Ihrer Hochzeit.',
+      subtitle: 'Von unserem ersten Gespräch bis zur fertigen Galerie wird jedes Detail durchdacht.',
       phases: [
         {
           name: 'VORHER',
+          tagline: 'Ein bisschen Planung, viel weniger Stress.',
+          body: 'Vor Ihrer Hochzeit sprechen wir darüber, was Ihnen wichtig ist, wie sich der Tag anfühlen soll und welche Momente Sie auf keinen Fall verpassen möchten.',
           items: [
-            'Planung',
-            'Begleitung beim Zeitplan',
-            'Beratungsgespräch',
+            'Planung & Zeitplan-Begleitung',
+            'Vorab-Beratungsgespräch',
+            'Location- und Lichtüberlegungen',
             'Ihre Geschichte kennenlernen',
           ],
         },
         {
           name: 'WÄHREND',
-          items: [
-            'Natürliche Anleitung',
-            'Spontane Momente',
-            'Editoriale Porträts',
-            'Blick fürs Detail',
-          ],
+          tagline: 'Anleitung, wenn Sie sie brauchen. Freiraum, wenn nicht.',
+          body: 'Ich leite Sie an, wenn ein wenig Richtung hilft, und trete zurück, wenn der Moment für sich selbst spricht.',
+          items: ['Natürliche Anleitung', 'Spontane Momente', 'Editoriale Porträts', 'Details & Atmosphäre'],
         },
         {
           name: 'DANACH',
+          tagline: 'Fotografien, zu denen Sie immer wieder zurückkehren.',
+          body: 'Ihre Bilder werden sorgfältig kuratiert und zu einer Kollektion zusammengestellt, die die Geschichte Ihres Tages von Anfang bis Ende erzählt.',
           items: [
-            'Sorgfältig bearbeitete Fotografien',
-            'Private Online-Galerie',
+            'Sorgfältig kuratierte Galerie',
+            'Private Online-Zustellung',
             'Print- und Album-Optionen',
           ],
         },
@@ -91,7 +92,8 @@ export const de: Dictionary = {
         {
           quote:
             'Valeria hat Dinge bemerkt, von denen wir gar nicht wussten, dass sie passierten — die stillen Momente zwischen den großen.',
-          names: 'ANNA & ELIAS · LAUTERBRUNNEN',
+          names: 'GALA & THOMAS · ZÜRICH',
+          image: '/images/home/testimonials/gala-thomas.jpg',
         },
         {
           quote:
