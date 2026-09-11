@@ -1,7 +1,6 @@
 import { PageHeader } from '@/components/organisms/PageHeader';
 import { AboutHero } from '@/components/organisms/AboutHero';
 import { AboutStory } from '@/components/organisms/AboutStory';
-import { TextureBanner } from '@/components/molecules/TextureBanner';
 import { ClosingCTA } from '@/components/organisms/ClosingCTA';
 import { SimpleFooter } from '@/components/organisms/SimpleFooter';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
@@ -21,7 +20,13 @@ export function AboutPage() {
       <main>
         <AboutHero />
         <AboutStory />
-        <TextureBanner fallbackLabel={t.aboutPage.bannerLabel} aspect="21/9" />
+        <div className="w-full border-t border-b border-border overflow-hidden" style={{ aspectRatio: '21/9' }}>
+          <img
+            src="/images/about-page/banner/banner.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
         <ClosingCTA title={t.aboutPage.closingTitle} />
       </main>
       <SimpleFooter />
