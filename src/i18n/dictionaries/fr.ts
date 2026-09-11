@@ -54,31 +54,33 @@ export const fr: Dictionary = {
     },
     experience: {
       title: "L'Expérience",
-      subtitle: 'Une approche calme et réfléchie pour photographier votre mariage.',
+      subtitle:
+        "De notre premier échange jusqu'à la galerie finale, chaque détail est pensé avec soin.",
       phases: [
         {
           name: 'AVANT',
+          tagline: 'Un peu de préparation, beaucoup moins de stress.',
+          body: "Avant votre mariage, nous parlerons de ce qui compte pour vous, de l'ambiance que vous souhaitez donner à la journée et des moments à ne surtout pas manquer.",
           items: [
-            'Planification',
-            'Conseils sur le déroulé',
-            'Consultation',
+            'Planification et déroulé de la journée',
+            'Consultation avant le mariage',
+            'Repérage des lieux et de la lumière',
             'Faire connaissance avec votre histoire',
           ],
         },
         {
           name: 'PENDANT',
-          items: [
-            'Direction naturelle',
-            'Moments spontanés',
-            'Portraits éditoriaux',
-            'Attention aux détails',
-          ],
+          tagline: "Une direction quand il le faut. De l'espace quand ce n'est pas nécessaire.",
+          body: "Je vous guide quand un peu de direction aide, et je m'efface quand l'instant se suffit à lui-même.",
+          items: ['Direction naturelle', 'Moments spontanés', 'Portraits éditoriaux', 'Détails et ambiance'],
         },
         {
           name: 'APRÈS',
+          tagline: 'Des photographies que vous aurez envie de revoir.',
+          body: "Vos images sont soigneusement sélectionnées et retouchées pour former une collection qui raconte votre journée du début à la fin.",
           items: [
-            'Photographies soigneusement retouchées',
-            'Galerie privée en ligne',
+            'Galerie soigneusement sélectionnée',
+            'Livraison privée en ligne',
             "Options de tirages et d'albums",
           ],
         },
@@ -91,7 +93,8 @@ export const fr: Dictionary = {
         {
           quote:
             'Valeria remarquait des choses que nous ne savions même pas en train de se passer — les instants discrets entre les grands moments.',
-          names: 'ANNA & ELIAS · LAUTERBRUNNEN',
+          names: 'GALA & THOMAS · ZURICH',
+          image: '/images/home/testimonials/gala-thomas.jpg',
         },
         {
           quote:
