@@ -2,12 +2,15 @@ export type Language = 'en' | 'fr' | 'de';
 
 export interface ExperiencePhase {
   name: string;
+  tagline: string;
+  body: string;
   items: string[];
 }
 
 export interface Testimonial {
   quote: string;
   names: string;
+  image?: string;
 }
 
 export interface ApproachPrinciple {
